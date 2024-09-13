@@ -1,0 +1,112 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+}
+
+body{
+    margin: 0;
+}
+div#logo_header{
+    background: linear-gradient(#003366, #006699);
+    color: white;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+}
+
+div#logo_header p{
+    margin: 5px;
+    font-size: 2em;
+}
+
+nav{
+    background-color: #383838;
+    
+}
+
+nav ul, 
+nav ul a{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    text-decoration: none;
+    padding: 10px;
+    margin: auto;
+}
+
+ 
+nav ul a:hover{
+    color: #383838;
+    background-color: #CCCCCC;
+}
+
+form.form_profissional{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: fit-content;
+    gap: 5px;
+    line-height: 2em;
+    padding: 10px;
+}
+
+/* Tabela */
+
+table thead, table tfoot{
+    background-color: #003366;
+    color: white;
+    border-style: none;
+}
+
+table tbody tr:nth-child(odd){
+    background-color: #639ddf;
+}
+
+table tbody tr:nth-child(even){
+    background-color: rgb(247, 248, 253);
+}
+
+table tbody tr:hover{
+    background-color: #CCCCCC;
+}
+
+table tr td,
+table tr th{
+    padding: 0.5em;
+}
+
+a.botao_verde,
+input[type="submit"]{
+    background-color: #09680b;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 0.4em;
+    text-decoration: none;
+}
+
+a.botao_vermelho,
+input[type="button"]{
+    background-color: #600a0a;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 0.4em;
+    text-decoration: none;
+}
+
+a.botao_verde:hover,
+input[type="submit"]:hover{
+    background-color: #297c2b;
+
+}
+
+a.botao_vermelho:hover,
+input[type="button"]:hover{
+    background-color: #883636;
+}
+footer,
+footer a{
+    background-color: #003366;
+    color: white;
+    padding: 5px;
+}

@@ -8,8 +8,10 @@
     </head>
     <body>
         <header>
-            <img src="../images/logo_azul(64).png" alt="Logo azul">
-            <p>SGCM - Sistemas de Gerenciamento de Consultas Médicas</p>
+            <div id="logo_header">
+                <img src="../images/logo_azul(64).png" alt="Logo azul">
+                <p>SGCM - Sistemas de Gerenciamento de Consultas Médicas</p>
+            </div>
         </header>
         <nav>
             <ul>
@@ -23,19 +25,15 @@
             </ul>
         </nav>
         <main>
-            <form action="">
+            <form action="" class="form_profissional">
                 <label for="nome">Nome:</label>
                 <input type="text" name="nome" id="nome">
-                <br>
-                <label for="registroConselho">Registro do Conselho</label>
+                <label for="registroConselho">Registro do Conselho:</label>
                 <input type="text" name="registroConselhoConselho" id="registroConselho">
-                <br>
                 <label for="telefone">Telefone:</label>
                 <input type="text" name="telefone" id="telefone">
-                <br>
                 <label for="email">E-mail:</label>
                 <input type="text" name="email" id="email">
-                <br>
                 <!-- Unidade e Especialidade -->
                  <label for="unidade">Unidade:</label>
                  <select name="unidade" id="unidade">
@@ -44,7 +42,6 @@
                     <option value="2">Laboratório</option>
                     <option value="3">Clínica de Terapias</option>
                  </select>
-                 <br>
                  <label for="especialidade">Especialidade:</label>
                  <select name="especialidade" id="especialidade">
                     <option value="">Escolha a Especialidade</option>
@@ -52,12 +49,11 @@
                     <option value="2">Oftalmologista</option>
                     <option value="3">Otorrinolaringologista</option>
                  </select>
-                 <br>
                  <input type="submit" value="Enviar">
                  <input type="button" value="Cancelar">
             </form>
             
-            <table border="2">
+            <table border="0">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -67,14 +63,15 @@
                         <th>EMAIL</th>
                         <th>UNIDADE</th>
                         <th>ESPECIALIDADE</th>
+                        <th>OPÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- tr*5>td*7> -->
-                    <!-- tr*5>td*6+td{Editar | Excluir} -->
-                    <!-- tr*5>td{$}*6+td{Editar | Excluir} -->
-                    <!-- tr*5>td{$}+TD{x}*6+td{Editar | Excluir} -->
-                    <!-- tr*5>td{$}+td{x}*6+td>a[href="javascript:void(0)"]+{Editar}+{ | }+a[href="javascript:void(0)"]+{Excluir} -->
+                    <!-- tr*5>td*6+Excluir{  } -->
+                    <!-- tr*5>td{$}*6+Excluir{  } -->
+                    <!-- tr*5>td{$}+TD{x}*6+Excluir{  } -->
+                    <!-- tr*5>td{$}+td{x}*6+td>a[href="javascript:void(0)"]Editar+{}+{  }+a[href="javascript:void(0)"]Excluirar+{} -->
                     <tr>
                         <td>1</td>
                         <td>x</td>
@@ -83,9 +80,10 @@
                         <td>x</td>
                         <td>x</td>
                         <td>x</td>
-                        <td><a href="javascript:void(0)"></a>
-                            Editar
-                             | <a href="javascript:void(0)"></a>Excluir</td>
+                        <td>
+                            <a  class="botao_verde"href="javascript:void(0)">Editar</a>
+                            <a class="botao_vermelho"href="javascript:void(0)">Excluir</a>
+                        </td>
                     </tr>
                     <tr>
                         <td>2</td>
@@ -95,9 +93,8 @@
                         <td>x</td>
                         <td>x</td>
                         <td>x</td>
-                        <td><a href="javascript:void(0)"></a>
-                            Editar
-                             | <a href="javascript:void(0)"></a>Excluir</td>
+                        <td><a  class="botao_verde"href="javascript:void(0)">Editar</a>
+                            <a class="botao_vermelho"href="javascript:void(0)">Excluir</a></td>
                     </tr>
                     <tr>
                         <td>3</td>
@@ -107,9 +104,8 @@
                         <td>x</td>
                         <td>x</td>
                         <td>x</td>
-                        <td><a href="javascript:void(0)"></a>
-                            Editar
-                             | <a href="javascript:void(0)"></a>Excluir</td>
+                        <td><a class="botao_verde"href="javascript:void(0)">Editar</a>
+                              <a class="botao_vermelho"href="javascript:void(0)">Excluir</a></td>
                     </tr>
                     <tr>
                         <td>4</td>
@@ -119,9 +115,10 @@
                         <td>x</td>
                         <td>x</td>
                         <td>x</td>
-                        <td><a href="javascript:void(0)"></a>
-                            Editar
-                             | <a href="javascript:void(0)"></a>Excluir</td>
+                        <td>
+                            <a class="botao_verde"href="javascript:void(0)">Editar</a>
+                            <a class="botao_vermelho"href="javascript:void(0)">Excluir</a>
+                        </td>
                     </tr>
                     <tr>
                         <td>5</td>
@@ -131,9 +128,10 @@
                         <td>x</td>
                         <td>x</td>
                         <td>x</td>
-                        <td><a href="javascript:void(0)"></a>
-                            Editar
-                             | <a href="javascript:void(0)"></a>Excluir</td>
+                        <td>
+                            <a class="botao_verde"href="javascript:void(0)">Editar</a>
+                            <a class="botao_vermelho"href="javascript:void(0)">Excluir</a>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -144,7 +142,7 @@
             </table>
         </main>
         <footer>
-            <p>Telefone para contato: <span><a href="tel:+556832233030">(68)3223-3030</span></a> | Email: <a href="mailto:suport.sgcm@ufac.br">suporte.sgcm@ufac.br</a></p>
+            <p>Telefone para contato: <span><a href="tel:+556832233030">(68)3223-3030</span></a>  Email: <a href="mailto:suport.sgcm@ufac.br">suporte.sgcm@ufac.br</a></p>
         </footer>
     </body>
 </html>

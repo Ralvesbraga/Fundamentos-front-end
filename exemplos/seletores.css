@@ -1,0 +1,74 @@
+/* SELETORE UNIVERSAL */
+*{ 
+    color: red;
+}
+/* SELETOR DE TAG */
+a{
+    color: red;
+}
+/* SELETOR DE CLASSE */
+.link_class{
+    color: palegreen;
+}
+/* SELETOR DE IDENTIFICADOR, VULGO ID */
+#link_id{
+    color: red;
+}
+/* SELETOR DE ATRIBUTO */
+a[href="https://www.google.com.br/"]{
+    color: violet;
+}
+
+p, h1{
+    text-align: center;
+}
+h1{
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: palevioletred;
+}
+
+p{
+    color: chartreuse;
+}
+
+/* Combinação de seletores */
+p.p1{
+    font-weight: bold;
+    color: black;
+}
+
+p span{
+    font-style: italic;
+}
+
+p+h2{
+    font-size: 80px;
+}
+
+ul>li{
+    color: gold;
+}
+
+p~h3{
+    color: limegreen;
+}
+
+/* Cálculo da medida em  */
+.pai{
+    font-size: 10px;
+}
+
+.filho{
+    font-size: 2em;
+}
+
+h4{
+    color: tomato;
+    font-size: 72px;
+}
+
+h5{
+    color: rgb(255, 99, 71, 0.3);
+    font-size: 72px;
+}

@@ -31,6 +31,8 @@ form.addEventListener('submit', (evento) => {
         especialidade: form.especialidade.options[form.especialidade.selectedIndex].label
     }
     inserirProfissional(objeto);
+    botaoAdicionar.classList.remove('inativo');
+    div.classList.add('inativo')
 });
 
 
@@ -72,8 +74,19 @@ carregaProfissionais();
 
 //Botão Adicionar
 let botaoAdicionar = document.querySelector('div#add');
-
+let div = document.querySelector('div.inativo')
 //Escutador de evento
 botaoAdicionar.addEventListener('click', ()=> {
-    form.classList.remove('inativo');
+    div.classList.remove('inativo');
+    botaoAdicionar.classList.add('inativo');
+    form.reset();
+});
+
+//Botão Cancelar
+
+let botaoCancelar = document.querySelector('input[type="button"]');
+botaoCancelar.addEventListener('click', () => {
+    div.classList.add('inativo');
+    botaoAdicionar.classList.remove('inativo');
+    form.reset();
 })

@@ -1,19 +1,29 @@
 carregaProfissionais = () =>{
     let xhr = new XMLHttpRequest; // instancia o objeto que pede a requisição pro site
     let url = "https://my-json-server.typicode.com/juniorlimeiras/json/profissionais"; //armazena a url do servidor que vamos acessar usando o xhr
-    xhr.open('GET', url);// Usa o método get para requisitar os dados da url
-    let tabela = document.querySelector('table');
-    xhr.addEventListener('readystatechange', () => {
-        if (xhr.readyState === 4 && xhr.status === 200){ //Verifica se já terminou a requisição e se todos os dados já foram passados
-        let dados = JSON.parse(xhr.responseText);
-            for (profissional of dados){
-                inserirProfissional(profissional);
-            }
+    fetch(url).then(resposta => {
+        return resposta.json()
+    }).then(dados =>{
+        for(const profisional of dados){
+            inserirProfissional(profisional);
         }
+        excluirLinha();
     });
-    xhr.send();
+}
+//     xhr.open('GET', url);// Usa o método get para requisitar os dados da url
+//     let tabela = document.querySelector('table');
+//     xhr.addEventListener('readystatechange', () => {
+//         if (xhr.readyState === 4 && xhr.status === 200){ //Verifica se já terminou a requisição e se todos os dados já foram passados
+//         let dados = JSON.parse(xhr.responseText);
+//             for (profissional of dados){
+//                 inserirProfissional(profissional);
+//             }
+//         }
+//         excluirLinha();
+//     });
+//     xhr.send();
 
-};
+// };
 
 //Inserindo Profissional
 
@@ -31,8 +41,9 @@ form.addEventListener('submit', (evento) => {
         especialidade: form.especialidade.options[form.especialidade.selectedIndex].label
     }
     inserirProfissional(objeto);
+    //Carregar a função que exclui a linha
     botaoAdicionar.classList.remove('inativo');
-    div.classList.add('inativo')
+    div.classList.add('inativo');
 });
 
 
@@ -89,4 +100,15 @@ botaoCancelar.addEventListener('click', () => {
     div.classList.add('inativo');
     botaoAdicionar.classList.remove('inativo');
     form.reset();
-})
+});
+
+//Botão Excluir
+function excluirLinha() {
+    botoes = document.querySelectorAll('a.botao_vermelho')
+    for (const botao of botoes) {
+        botao.addEventListener('click', () => {
+            botao.parentNode.parentNode.remove();
+        })
+    }
+}
+//const excluirLinha 

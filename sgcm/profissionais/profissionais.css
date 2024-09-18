@@ -142,3 +142,7 @@ footer a{
     }
 
 }
+
+div.inativo{
+    display: none;
+}

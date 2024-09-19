@@ -1,5 +1,4 @@
 carregaProfissionais = () =>{
-    let xhr = new XMLHttpRequest; // instancia o objeto que pede a requisição pro site
     let url = "https://my-json-server.typicode.com/juniorlimeiras/json/profissionais"; //armazena a url do servidor que vamos acessar usando o xhr
     fetch(url).then(resposta => {
         return resposta.json()
@@ -7,9 +6,12 @@ carregaProfissionais = () =>{
         for(const profisional of dados){
             inserirProfissional(profisional);
         }
+        editarLinha();
         excluirLinha();
+        quantidadeProfissionais();
     });
 }
+//     let xhr = new XMLHttpRequest; // instancia o objeto que pede a requisição pro site
 //     xhr.open('GET', url);// Usa o método get para requisitar os dados da url
 //     let tabela = document.querySelector('table');
 //     xhr.addEventListener('readystatechange', () => {
@@ -24,9 +26,8 @@ carregaProfissionais = () =>{
 //     xhr.send();
 
 // };
-
+carregaProfissionais();
 //Inserindo Profissional
-
 let form = document.querySelector('form');
 let tabela = document.querySelector('table')
 form.addEventListener('submit', (evento) => {
@@ -41,10 +42,14 @@ form.addEventListener('submit', (evento) => {
         especialidade: form.especialidade.options[form.especialidade.selectedIndex].label
     }
     inserirProfissional(objeto);
+    editarLinha();
     //Carregar a função que exclui a linha
+    excluirLinha();
+    quantidadeProfissionais();
     botaoAdicionar.classList.remove('inativo');
     div.classList.add('inativo');
 });
+
 
 
 //Função que recebe um objeto do tipo profissional
@@ -80,7 +85,7 @@ const inserirProfissional = (profissional) =>{
         tabela.tBodies[0].appendChild(linha); //Preenchendo a tabela
 };
 
-carregaProfissionais();
+
 
 
 //Botão Adicionar
@@ -98,7 +103,7 @@ botaoAdicionar.addEventListener('click', ()=> {
 let botaoCancelar = document.querySelector('input[type="button"]');
 botaoCancelar.addEventListener('click', () => {
     div.classList.add('inativo');
-    botaoAdicionar.classList.remove('inativo');
+    botaoAdicionar.classList.remove('inativo')
     form.reset();
 });
 
@@ -108,7 +113,36 @@ function excluirLinha() {
     for (const botao of botoes) {
         botao.addEventListener('click', () => {
             botao.parentNode.parentNode.remove();
+            quantidadeProfissionais();
         })
     }
 }
-//const excluirLinha 
+
+function quantidadeProfissionais(){
+    foot = document.querySelector('#quantidadeProfissionais');
+    foot.textContent = 'Quantidade de Profissionais: ' + (tabela.getElementsByTagName('tr').length - 2);
+}
+
+
+
+function editarLinha() {
+    botoesEditar = document.querySelectorAll('a.botao_verde');
+    for(let botao of botoesEditar){
+        botao.addEventListener('click',()=>{
+            tupla = botao.parentNode.parentNode.getElementsByTagName('td');
+            form.nome.textContent = tupla[1]
+            form.registroConselho.textContent = tupla[2]
+            form.telefone.textContent = tupla[3]
+            form.email.textContent = tupla[4]
+
+            buscarSelect(tupla[5], tupla[6]);
+        })
+    }
+
+}
+
+function buscarSelect(unidade, especialidade){
+    let selectUnidade = form.options;
+    console.log(selectUnidade[1])
+  
+}

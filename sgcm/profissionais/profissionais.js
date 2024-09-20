@@ -96,33 +96,45 @@ const inserirProfissional = (profissional) =>{
 
 //Inserindo Profissional
 let form = document.querySelector('form');
-let tabela = document.querySelector('table')
+let tabela = document.querySelector('table');
+let incrementa = 6; //Variavel para incrementar os ids
+let linhaEditada = null; // Variável para armazenar a linha em edição
 
 form.addEventListener('submit', (evento) => {
-    evento.preventDefault(); //Evita que a página seja recarregada.
-    objeto ={
-        id: tabela.tBodies[0].rows.length + 1,
-        nome: form.nome.value,
-        registro: form.registroConselho.value,
-        telefone: form.telefone.value,
-        email: form.email.value,
-        unidade: form.unidade.options[form.unidade.selectedIndex].label,
-        especialidade: form.especialidade.options[form.especialidade.selectedIndex].label
+    evento.preventDefault(); // Evita o recarregamento da página.
+
+    if (linhaEditada) {
+        // Se estiver editando uma linha, atualiza os campos da linha
+        linhaEditada.cells[1].textContent = form.nome.value;
+        linhaEditada.cells[2].textContent = form.registroConselho.value;
+        linhaEditada.cells[3].textContent = form.telefone.value;
+        linhaEditada.cells[4].textContent = form.email.value;
+        linhaEditada.cells[5].textContent = form.unidade.options[form.unidade.selectedIndex].label;
+        linhaEditada.cells[6].textContent = form.especialidade.options[form.especialidade.selectedIndex].label;
+
+        // Após a edição, limpa a referência de linhaEditada e o formulário
+        linhaEditada = null;
+    } else {
+        // Se não estiver editando, vai inserir um novo profissional
+        let objeto = {
+            id: tabela.tBodies[0].rows.length +1,
+            nome: form.nome.value,
+            registro: form.registroConselho.value,
+            telefone: form.telefone.value,
+            email: form.email.value,
+            unidade: form.unidade.options[form.unidade.selectedIndex].label,
+            especialidade: form.especialidade.options[form.especialidade.selectedIndex].label
+        };
+        inserirProfissional(objeto);
     }
-    inserirProfissional(objeto);
-    editarLinha();
-    //Carregar a função que exclui a linha
-    excluirLinha();
+
+    editarLinha(); // Reaplica os eventos de edição nas novas linhas
+    excluirLinha(); // Reaplica os eventos de exclusão nas novas linhas
     quantidadeProfissionais();
     botaoAdicionar.classList.remove('inativo');
     div.classList.add('inativo');
+    form.reset(); // Limpa o formulário após a inserção ou edição
 });
-
-// Função que atualiza a quantidade de profissionais na tfoot
-function quantidadeProfissionais(){
-    foot = document.querySelector('#quantidadeProfissionais');
-    foot.textContent = 'Quantidade de Profissionais: ' + (tabela.getElementsByTagName('tr').length - 2);
-}
 
 
 //Botão Adicionar
@@ -182,8 +194,8 @@ function editarLinha(){
             document.getElementById('email').value = email;
             document.getElementById('unidade').selectedIndex = +indices[0];
             document.getElementById('especialidade').selectedIndex = +indices[1];
-            //Remove a linha
-            linha.remove();
+            
+            linhaEditada = linha;
             //Mostra o fomulário
             div.classList.remove('inativo');
             //

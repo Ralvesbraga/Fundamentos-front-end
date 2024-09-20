@@ -111,9 +111,12 @@ form.addEventListener('submit', (evento) => {
         linhaEditada.cells[4].textContent = form.email.value;
         linhaEditada.cells[5].textContent = form.unidade.options[form.unidade.selectedIndex].label;
         linhaEditada.cells[6].textContent = form.especialidade.options[form.especialidade.selectedIndex].label;
-
         // Após a edição, limpa a referência de linhaEditada e o formulário
         linhaEditada = null;
+        
+        botaoAdicionar.classList.remove('inativo');
+        div.classList.add('inativo');
+        form.reset(); 
     } else {
         // Se não estiver editando, vai inserir um novo profissional
         let objeto = {
@@ -127,7 +130,6 @@ form.addEventListener('submit', (evento) => {
         };
         inserirProfissional(objeto);
     }
-
     editarLinha(); // Reaplica os eventos de edição nas novas linhas
     excluirLinha(); // Reaplica os eventos de exclusão nas novas linhas
     quantidadeProfissionais();
@@ -198,7 +200,7 @@ function editarLinha(){
             linhaEditada = linha;
             //Mostra o fomulário
             div.classList.remove('inativo');
-            //
+            //retira o botão adicionar
             botaoAdicionar.classList.add('inativo');
         });
     }
@@ -219,6 +221,11 @@ function retorna_indice(unidade, especialidade){
             idEspecialidade = option.value;
         }
     }
-
     return [idUnidade, idEspecialidade];
+}
+
+
+function quantidadeProfissionais(){
+    foot = document.querySelector('#quantidadeProfissionais');
+    foot.textContent = 'Quantidade de Profissionais: ' + (tabela.getElementsByTagName('tr').length - 2);
 }
